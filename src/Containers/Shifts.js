@@ -14,7 +14,7 @@ class Shifts extends Component {
                 staffTypeId: '1',
             },
             shifts: [],
-            error:[]
+            error: []
         }
     }
 
@@ -32,10 +32,10 @@ class Shifts extends Component {
     filterData(data) {
         const { user } = this.state
         const currentDate = new Date()
-        
+
         return data.filter(entry => {
             const entryStartDate = new Date(entry.startDatetime)
-            if (entry.status === "POSTED" && 
+            if (entry.status === "POSTED" &&
                 entry.locum === null &&
                 entry.staffType === user.staffType &&
                 entryStartDate >= currentDate) {
@@ -48,7 +48,7 @@ class Shifts extends Component {
         this.fetchShifts()
     }
 
-    
+
     render() {
         const { shifts } = this.state
 
@@ -57,7 +57,8 @@ class Shifts extends Component {
                 <div className="flex flex-row text-gray-700 text-xl p-3">
                     <h1>Available Shifts</h1>
                 </div>
-                <ShiftList shifts={shifts}/>
+                <span id="results" className="p-3 text-sm text-gray-700">showing {shifts.length} results</span>
+                <ShiftList shifts={shifts} />
             </>
         )
     }
