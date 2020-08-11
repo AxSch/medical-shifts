@@ -21,11 +21,27 @@ class Shifts extends Component {
     async fetchShifts() {
         try {
             const res = await fetchShiftsAPI()
-            this.setState({ shifts: res.data })
+            const filteredData = this.filterData(res.data)
+            this.setState({ shifts: filteredData })
         } catch (error) {
             this.setState({ error: JSON.stringify(error) })
         }
 
+    }
+
+    filterData(data) {
+        const { user } = this.state
+        const currentDate = new Date()
+        
+        return data.filter(entry => {
+            const entryStartDate = new Date(entry.startDatetime)
+            if (entry.status === "POSTED" && 
+                entry.locum === null &&
+                entry.staffType === user.staffType &&
+                entryStartDate >= currentDate) {
+                return entry
+            }
+        })
     }
 
     componentDidMount() {
@@ -41,7 +57,7 @@ class Shifts extends Component {
                 <div className="flex flex-row text-gray-700 text-xl p-3">
                     <h1>Available Shifts</h1>
                 </div>
-                <div>List</div>
+                <ShiftList shifts={shifts}/>
             </>
         )
     }
