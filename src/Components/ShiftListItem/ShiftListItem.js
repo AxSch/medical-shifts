@@ -11,7 +11,7 @@ const ShiftListItem = ({ shift }) => {
             <div className="flex flex-row text-gray-700 text-xl font-medium">
                 <h1>{shift.practice.name}</h1>
             </div>
-            <div id="shiftPosition" className="text-sm text-gray-700 mt-2">
+            <div id="shift-position" className="text-sm text-gray-700 mt-2">
                 <span>Position available: {shift.staffType.toUpperCase()}</span>
             </div>
             <div id="shift-metadata" className="flex flex-row text-xs justify-between flex-wrap text-gray-700 pt-6 pb-2">
