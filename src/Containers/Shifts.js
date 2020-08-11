@@ -41,6 +41,7 @@ class Shifts extends Component {
                 entryStartDate >= currentDate) {
                 return entry
             }
+            return 0
         })
     }
 
