@@ -1,11 +1,12 @@
 import React from 'react'
+import ShiftListItem from '../ShiftListItem/ShiftListItem'
 
 
 const ShiftList = ({ shifts }) => {
     if (shifts && shifts.length > 0) {
         return shifts.map((shift, key) => {
             return (
-                <div key={key}>{shift.id}</div>
+                <ShiftListItem shift={shift} key={key} />
             )
         })
     } else {
